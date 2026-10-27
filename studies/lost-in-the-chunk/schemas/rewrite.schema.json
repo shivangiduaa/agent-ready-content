@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rewrite.schema.json",
+  "title": "Rewrite",
+  "description": "One rewritten passage in data/rewrites.jsonl (local). See CURATION.md section 5.",
+  "type": "object",
+  "required": ["passage_id", "rewrite_text", "fixes_applied", "word_count_ratio", "rewritten_by", "reviewed_by"],
+  "properties": {
+    "passage_id": {"type": "string"},
+    "rewrite_text": {"type": "string"},
+    "fixes_applied": {
+      "type": "array",
+      "items": {"enum": ["name_entity", "resolve_references", "one_claim_per_sentence", "consistent_terms"]},
+      "minItems": 1
+    },
+    "word_count_ratio": {"type": "number", "minimum": 0.8, "maximum": 1.2, "description": "Rewrite word count / original. CURATION.md caps the change at 20%."},
+    "rewritten_by": {"type": "string"},
+    "reviewed_by": {"type": "string", "description": "A different person, who confirms nothing was added or dropped"},
+    "notes": {"type": "string"}
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "passage.schema.json",
+  "title": "Passage",
+  "description": "One row of data/passages.jsonl (local, includes text) or data/passages_index.csv (committed, no text).",
+  "type": "object",
+  "required": ["passage_id", "page_id", "vendor", "snapshot", "index", "heading_path", "word_count", "text_sha256", "features"],
+  "properties": {
+    "passage_id": {"type": "string", "pattern": "^[a-z0-9]+:[0-9a-f]{12}:p\\d{3}$"},
+    "page_id": {"type": "string"},
+    "vendor": {"type": "string"},
+    "category": {"enum": ["feature_flagging", "workflow_orchestration"]},
+    "page_type": {"enum": ["home", "product", "integrations", "security", "docs_intro", "comparison", "pricing"]},
+    "snapshot": {"type": "string"},
+    "index": {"type": "integer", "minimum": 0},
+    "page_title": {"type": "string"},
+    "entity_in_title": {"type": "boolean", "description": "Vendor named in the page title or the headings above the passage. True with entity_explicit false is the detachment case: the page identifies the source, the passage alone does not."},
+    "heading_path": {"type": "array", "items": {"type": "string"}},
+    "text": {"type": "string", "description": "Local file only. Stripped from the committed index."},
+    "word_count": {"type": "integer"},
+    "text_sha256": {"type": "string"},
+    "features": {
+      "type": "object",
+      "required": ["entity_mentions", "entity_explicit", "first_person_refs", "pronoun_refs", "generic_refs", "unresolved_ref_rate", "has_number", "has_named_standard", "sentence_count"],
+      "properties": {
+        "entity_mentions": {"type": "integer", "description": "Vendor or product names from vendors.yaml"},
+        "entity_explicit": {"type": "boolean"},
+        "other_vendor_mentions": {"type": "integer", "description": "Names of other study vendors in the passage. Comparison pages put two brands in one passage, where misattribution is most likely."},
+        "first_person_refs": {"type": "integer", "description": "we, our, us: brand voice that loses its referent once chunked"},
+        "pronoun_refs": {"type": "integer", "description": "Third-person pronouns and demonstratives that may point outside the passage"},
+        "generic_refs": {"type": "integer", "description": "the platform, the tool, the product, and similar"},
+        "unresolved_ref_rate": {"type": "number", "description": "(first person + pronoun + generic refs) per sentence. A heuristic until a coreference model is wired in."},
+        "has_number": {"type": "boolean"},
+        "has_named_standard": {"type": "boolean"},
+        "sentence_count": {"type": "integer"}
+      }
+    }
+  }
+}

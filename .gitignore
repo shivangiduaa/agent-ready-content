@@ -1,0 +1,18 @@
+# Third-party page content stays local (see studies/*/data/README.md)
+studies/*/data/raw/
+studies/*/data/passages.jsonl
+studies/*/data/rewrites.jsonl
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+
+# Secrets
+.env
+*.key
+
+# OS
+.DS_Store

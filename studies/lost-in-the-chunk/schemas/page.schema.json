@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "page.schema.json",
+  "title": "Fetched page",
+  "description": "One row of data/pages_manifest.jsonl, written by fetch.py for each page in each snapshot.",
+  "type": "object",
+  "required": ["page_id", "vendor", "url", "page_type", "snapshot", "fetched_at", "http_status"],
+  "properties": {
+    "page_id": {"type": "string", "pattern": "^[a-z0-9]+:[0-9a-f]{12}$", "description": "vendor:first 12 hex of sha1(url)"},
+    "vendor": {"type": "string"},
+    "url": {"type": "string", "format": "uri"},
+    "page_type": {"enum": ["home", "product", "integrations", "security", "docs_intro", "comparison", "pricing"]},
+    "volatile": {"type": "boolean", "description": "True for pages expected to change often, such as pricing"},
+    "snapshot": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+    "fetched_at": {"type": "string", "format": "date-time"},
+    "http_status": {"type": "integer"},
+    "robots_allowed": {"type": "boolean"},
+    "raw_path": {"type": ["string", "null"], "description": "Local path to the raw HTML. Not committed."},
+    "html_sha256": {"type": ["string", "null"]},
+    "text_sha256": {"type": ["string", "null"], "description": "Checksum of extracted main text. Changes here mean the content changed."},
+    "error": {"type": ["string", "null"]}
+  }
+}

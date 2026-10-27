@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "claim.schema.json",
+  "title": "Claim",
+  "description": "One checkable claim in data/claims.jsonl, the ground truth that answers are scored against.",
+  "type": "object",
+  "required": ["claim_id", "vendor", "statement", "claim_type", "source_passage_ids", "checked_by"],
+  "properties": {
+    "claim_id": {"type": "string", "pattern": "^[a-z0-9]+:c\\d{3}$"},
+    "vendor": {"type": "string"},
+    "statement": {"type": "string", "description": "The claim in one sentence, close to the vendor's wording"},
+    "claim_type": {"enum": ["number", "integration", "standard", "capability", "deployment"]},
+    "key_terms": {"type": "array", "items": {"type": "string"}, "description": "Terms that must survive for a faithful match, such as the number or the integration name"},
+    "source_passage_ids": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "volatile": {"type": "boolean"},
+    "checked_by": {"type": "string", "description": "Who confirmed the claim is checkable and correctly stated"},
+    "notes": {"type": "string"}
+  }
+}

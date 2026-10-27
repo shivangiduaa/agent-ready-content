@@ -1,0 +1,110 @@
+# Vendors in the Lost in the Chunk study.
+#
+# aliases: every name an answer might use for the vendor or its products.
+#   segment.py counts these to measure entity explicitness, so list product
+#   names too (for example the cloud edition), not just the company name.
+# domain: verified by discover.py, which reads robots.txt and the sitemap.
+
+categories:
+  feature_flagging:
+    description: Feature flag and experimentation platforms
+  workflow_orchestration:
+    description: Durable workflow, job, and data orchestration platforms
+
+vendors:
+  # Feature flagging
+  - id: launchdarkly
+    name: LaunchDarkly
+    category: feature_flagging
+    domain: launchdarkly.com
+    aliases: [LaunchDarkly]
+  - id: statsig
+    name: Statsig
+    category: feature_flagging
+    domain: statsig.com
+    aliases: [Statsig]
+    notes: Ownership changed in 2025. Check the marketing site is still maintained before including.
+  - id: growthbook
+    name: GrowthBook
+    category: feature_flagging
+    domain: growthbook.io
+    aliases: [GrowthBook]
+  - id: unleash
+    name: Unleash
+    category: feature_flagging
+    domain: getunleash.io
+    aliases: [Unleash]
+    notes: Common English word. Alias matching is case-sensitive for this vendor.
+    case_sensitive: true
+  - id: flagsmith
+    name: Flagsmith
+    category: feature_flagging
+    domain: flagsmith.com
+    aliases: [Flagsmith]
+  - id: configcat
+    name: ConfigCat
+    category: feature_flagging
+    domain: configcat.com
+    aliases: [ConfigCat]
+  - id: devcycle
+    name: DevCycle
+    category: feature_flagging
+    domain: devcycle.com
+    aliases: [DevCycle]
+  - id: flipt
+    name: Flipt
+    category: feature_flagging
+    domain: flipt.io
+    aliases: [Flipt]
+
+  # Workflow orchestration
+  - id: temporal
+    name: Temporal
+    category: workflow_orchestration
+    domain: temporal.io
+    aliases: [Temporal, Temporal Cloud]
+    case_sensitive: true
+  - id: prefect
+    name: Prefect
+    category: workflow_orchestration
+    domain: prefect.io
+    aliases: [Prefect, Prefect Cloud]
+    case_sensitive: true
+  - id: dagster
+    name: Dagster
+    category: workflow_orchestration
+    domain: dagster.io
+    aliases: [Dagster, Dagster+]
+  - id: inngest
+    name: Inngest
+    category: workflow_orchestration
+    domain: inngest.com
+    aliases: [Inngest]
+  - id: restate
+    name: Restate
+    category: workflow_orchestration
+    domain: restate.dev
+    aliases: [Restate]
+    case_sensitive: true
+  - id: kestra
+    name: Kestra
+    category: workflow_orchestration
+    domain: kestra.io
+    aliases: [Kestra]
+  - id: hatchet
+    name: Hatchet
+    category: workflow_orchestration
+    domain: hatchet.run
+    aliases: [Hatchet]
+    case_sensitive: true
+  - id: triggerdev
+    name: Trigger.dev
+    category: workflow_orchestration
+    domain: trigger.dev
+    aliases: [Trigger.dev]
+  - id: windmill
+    name: Windmill
+    category: workflow_orchestration
+    domain: windmill.dev
+    aliases: [Windmill]
+    case_sensitive: true
